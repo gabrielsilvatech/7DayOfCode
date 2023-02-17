@@ -1,12 +1,13 @@
 package sevenDayOfCode;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class Day1 {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException, InterruptedException {
 
 		String apiKey = "<apiKey>";
 		URI uri = URI.create("https://imdb-api.com/en/API/Top250Movies/" + apiKey);
@@ -16,11 +17,8 @@ public class Day1 {
 
 		HttpResponse<String> response;
 
-		try {
-			response = client.send(request, HttpResponse.BodyHandlers.ofString());
-			System.out.println(response.body());
-		} catch (Exception e) {
-			e.getMessage();
-		}
+		response = client.send(request, HttpResponse.BodyHandlers.ofString());
+		System.out.println(response.body());
+
 	}
 }
